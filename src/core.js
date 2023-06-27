@@ -62,7 +62,7 @@ const transitions = (stateNode, buffer) => {
 };
 
 const finalTransitions = (stateNode, buffer) => {
-  if(!Object.keys(stateNode.on).length && !stateNode.initial) {
+  if(stateNode.type === 'final') {
     const from = stateNode.id;
     buffer.appendf`${from} --> [*]`;
     buffer.newline();
