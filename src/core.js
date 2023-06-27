@@ -96,10 +96,17 @@ const states = (stateNode, buffer) => {
   }
 };
 
+const descriptions = (stateNode, buffer) => {
+  if (stateNode.description) {
+    buffer.appendf`${stateNode.id}: ${stateNode.description}`;
+  }
+};
+
 const state = (stateNode, buffer) => {
   buffer.appendf`state "${stateNode.key}" as ${stateNode.id} {`;
   buffer.indent();
 
+  descriptions(stateNode, buffer);
   internalActions(stateNode, buffer);
   activities(stateNode, buffer);
   transitions(stateNode, buffer);
